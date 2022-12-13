@@ -106,6 +106,8 @@ final class MovieQuizViewController: UIViewController {
             self.correctAnswers = 0
             let question = self.convert(model: self.questions[currentQuestionIndex])
             self.show(quiz: question)
+            imageView.layer.masksToBounds = true
+            imageView.layer.borderWidth = 0
                                })
         alert.addAction(action)
         self.present(alert, animated: true, completion: nil)
