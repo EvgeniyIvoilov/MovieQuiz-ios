@@ -61,7 +61,7 @@
                                         <rect key="frame" x="0.0" y="624.66666666666663" width="374" height="103.33333333333337"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Рейтинг этого фильма меньше, чем 5?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0j2-Ro-lnM" userLabel="Question Label">
-                                                <rect key="frame" x="42" y="13" width="290" height="77.333333333333329"/>
+                                                <rect key="frame" x="42" y="0.0" width="290" height="103.33333333333333"/>
                                                 <fontDescription key="fontDescription" name="YSDisplay-Bold" family="YS Display" pointSize="23"/>
                                                 <color key="textColor" name="YP White"/>
                                                 <nil key="highlightedColor"/>
@@ -70,8 +70,8 @@
                                         <constraints>
                                             <constraint firstItem="0j2-Ro-lnM" firstAttribute="leading" secondItem="Wgi-Yi-KWT" secondAttribute="leading" constant="42" id="S0g-Ph-2a0"/>
                                             <constraint firstAttribute="trailing" secondItem="0j2-Ro-lnM" secondAttribute="trailing" constant="42" id="UHM-Wf-JQ8"/>
-                                            <constraint firstAttribute="bottom" secondItem="0j2-Ro-lnM" secondAttribute="bottom" constant="13" id="giG-3o-0pl"/>
-                                            <constraint firstItem="0j2-Ro-lnM" firstAttribute="top" secondItem="Wgi-Yi-KWT" secondAttribute="top" constant="13" id="nSA-hH-bIp"/>
+                                            <constraint firstAttribute="bottom" secondItem="0j2-Ro-lnM" secondAttribute="bottom" id="giG-3o-0pl"/>
+                                            <constraint firstItem="0j2-Ro-lnM" firstAttribute="top" secondItem="Wgi-Yi-KWT" secondAttribute="top" id="nSA-hH-bIp"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="krg-aX-6An">
