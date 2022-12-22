@@ -26,7 +26,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="b9y-51-8n7">
-                                <rect key="frame" x="20" y="54" width="374" height="824.33333333333337"/>
+                                <rect key="frame" x="20" y="54" width="374" height="808"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lGA-pD-wn3">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="23.666666666666668"/>
@@ -58,10 +58,10 @@
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wgi-Yi-KWT">
-                                        <rect key="frame" x="0.0" y="624.66666666666663" width="374" height="119.66666666666663"/>
+                                        <rect key="frame" x="0.0" y="624.66666666666663" width="374" height="103.33333333333337"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Рейтинг этого фильма меньше, чем 5?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0j2-Ro-lnM" userLabel="Question Label">
-                                                <rect key="frame" x="42" y="13" width="290" height="93.666666666666671"/>
+                                                <rect key="frame" x="42" y="0.0" width="290" height="103.33333333333333"/>
                                                 <fontDescription key="fontDescription" name="YSDisplay-Bold" family="YS Display" pointSize="23"/>
                                                 <color key="textColor" name="YP White"/>
                                                 <nil key="highlightedColor"/>
@@ -70,12 +70,12 @@
                                         <constraints>
                                             <constraint firstItem="0j2-Ro-lnM" firstAttribute="leading" secondItem="Wgi-Yi-KWT" secondAttribute="leading" constant="42" id="S0g-Ph-2a0"/>
                                             <constraint firstAttribute="trailing" secondItem="0j2-Ro-lnM" secondAttribute="trailing" constant="42" id="UHM-Wf-JQ8"/>
-                                            <constraint firstAttribute="bottom" secondItem="0j2-Ro-lnM" secondAttribute="bottom" constant="13" id="giG-3o-0pl"/>
-                                            <constraint firstItem="0j2-Ro-lnM" firstAttribute="top" secondItem="Wgi-Yi-KWT" secondAttribute="top" constant="13" id="nSA-hH-bIp"/>
+                                            <constraint firstAttribute="bottom" secondItem="0j2-Ro-lnM" secondAttribute="bottom" id="giG-3o-0pl"/>
+                                            <constraint firstItem="0j2-Ro-lnM" firstAttribute="top" secondItem="Wgi-Yi-KWT" secondAttribute="top" id="nSA-hH-bIp"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="krg-aX-6An">
-                                        <rect key="frame" x="0.0" y="764.33333333333337" width="374" height="60"/>
+                                        <rect key="frame" x="0.0" y="748" width="374" height="60"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hW3-lU-PKb" userLabel="No button">
                                                 <rect key="frame" x="0.0" y="0.0" width="177" height="60"/>
@@ -122,17 +122,20 @@
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="YP Black"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="b9y-51-8n7" secondAttribute="trailing" constant="20" id="XDB-T7-nVR"/>
                             <constraint firstItem="b9y-51-8n7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="i1v-kd-KlU"/>
                             <constraint firstItem="b9y-51-8n7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="sGV-WR-2cp"/>
+                            <constraint firstItem="b9y-51-8n7" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="z2o-4x-cRI"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="counterLabel" destination="ism-Sx-upb" id="jDc-SX-JOD"/>
                         <outlet property="imageView" destination="2AS-5h-0mV" id="Mhp-QH-Bd9"/>
                         <outlet property="textLabel" destination="0j2-Ro-lnM" id="2u4-RF-Z70"/>
+                        <outletCollection property="questionButtons" destination="hW3-lU-PKb" collectionClass="NSMutableArray" id="f7B-mX-u4S"/>
+                        <outletCollection property="questionButtons" destination="I31-1D-rQd" collectionClass="NSMutableArray" id="EdB-1K-Ofq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
