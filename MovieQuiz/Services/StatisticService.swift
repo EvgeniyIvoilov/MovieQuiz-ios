@@ -23,7 +23,6 @@ final class StatisticServiceImplementation {
         case correct, total, bestGame, gamesCount
         case totalCorrect, totalAmount
     }
-
     private let userDefaults = UserDefaults.standard
     private var totalCorrect: Int {
         get {
@@ -33,7 +32,6 @@ final class StatisticServiceImplementation {
             userDefaults.set(newValue, forKey: Keys.totalCorrect.rawValue)
         }
     }
-    
     private var totalAmount: Int {
         get {
             userDefaults.integer(forKey: Keys.totalAmount.rawValue)
@@ -57,13 +55,11 @@ extension StatisticServiceImplementation: StatisticService {
             return Double(totalCorrect) / Double(totalAmount) * 100
         }
     }
-    
     var gamesCount: Int {
         get {
             userDefaults.integer(forKey: Keys.gamesCount.rawValue)
         }
     }
-    
     var bestGame: GameRecord {
         get {
             guard let data = userDefaults.data(forKey: Keys.bestGame.rawValue),
