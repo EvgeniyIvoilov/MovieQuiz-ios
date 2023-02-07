@@ -19,6 +19,7 @@ class AlertPresenter {
                                    style: .default,
                                    handler: { _ in model.completion() })
         alert.addAction(action)
+        alert.view.accessibilityIdentifier = "EndGame"
         controller?.present(alert, animated: true, completion: nil)
     }
 }
