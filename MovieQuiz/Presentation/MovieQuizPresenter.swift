@@ -11,6 +11,33 @@ final class MovieQuizPresenter {
     
     private var currentQuestionIndex: Int = 0
     let questionsAmount: Int = 10
+    var currentQuestion: QuizQuestion?
+    weak var viewController: MovieQuizViewController?
+    
+    func yesButtonClicked() {
+        guard let currentQuestion = currentQuestion else {
+            return
+        }
+        let answer: Bool = true
+        viewController?.showAnswerResult(isCorrect: answer == currentQuestion.correctAnswer)
+        viewController?.questionButtons.forEach { $0.isEnabled = false }
+    }
+    
+    func noButtonClicked() {
+        guard let currentQuestion = currentQuestion else {
+            return
+        }
+        let answer: Bool = false
+        viewController?.showAnswerResult(isCorrect: answer == currentQuestion.correctAnswer)
+        //sender.isEnabled = false
+        
+        for questionButton in viewController!.questionButtons {
+            questionButton.isEnabled = false
+        }
+        viewController?.questionButtons.forEach { $0.isEnabled = false }
+    }
+    
+    // MARK: - ???
     
     func isLastQuestion() -> Bool {
         currentQuestionIndex == questionsAmount - 1

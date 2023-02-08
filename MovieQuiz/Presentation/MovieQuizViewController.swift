@@ -10,7 +10,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     private var statisticService: StatisticService?
     // MARK: - UI
     
-    @IBOutlet private var questionButtons: [UIButton]!
+    @IBOutlet var questionButtons: [UIButton]!
     @IBOutlet weak private var imageView: UIImageView!
     @IBOutlet weak private var textLabel: UILabel!
     @IBOutlet weak private var counterLabel: UILabel!
@@ -20,6 +20,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter.viewController = self
         questionFactory?.delegate = self
         showLoadingIndicator()
         questionFactory?.loadData()
@@ -57,26 +58,13 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     // MARK: - Actions
     
     @IBAction private func yesButtonClicked(_ sender: UIButton) {
-        guard let currentQuestion = currentQuestion else {
-            return
-        }
-        let answer: Bool = true
-        showAnswerResult(isCorrect: answer == currentQuestion.correctAnswer)
-        questionButtons.forEach { $0.isEnabled = false }
+        presenter.currentQuestion = currentQuestion
+        presenter.yesButtonClicked()
     }
     
     @IBAction private func noButtonClicked(_ sender: UIButton) {
-        guard let currentQuestion = currentQuestion else {
-            return
-        }
-        let answer: Bool = false
-        showAnswerResult(isCorrect: answer == currentQuestion.correctAnswer)
-        sender.isEnabled = false
-        
-        for questionButton in questionButtons {
-            questionButton.isEnabled = false
-        }
-        questionButtons.forEach { $0.isEnabled = false }
+        presenter.currentQuestion = currentQuestion
+        presenter.noButtonClicked()
     }
     
     // MARK: - Private
@@ -123,7 +111,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         return message
     }
     
-    private func showAnswerResult(isCorrect: Bool) {
+        func showAnswerResult(isCorrect: Bool) {
         
         if isCorrect == true {
             imageView.layer.borderColor = UIColor(.ypGreen)?.cgColor
