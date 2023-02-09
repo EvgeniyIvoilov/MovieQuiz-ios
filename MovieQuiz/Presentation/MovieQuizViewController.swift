@@ -1,9 +1,8 @@
 import UIKit
 
-final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
+final class MovieQuizViewController: UIViewController {
     
     let presenter = MovieQuizPresenter()
-    var correctAnswers: Int = 0
     var alertPresenter: AlertPresenter = AlertPresenter()
     var statisticService: StatisticService?
     
@@ -28,18 +27,6 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     
     // MARK: - QuestionFactoryDelegate
     
-    func didReceiveNextQuestion(question: QuizQuestion?) {
-        presenter.didReceiveNextQuestion(question: question)
-    }
-    
-    func didFailToLoadData(with error: Error) {
-        showNetworkError(message: error.localizedDescription)
-    }
-    
-    func didLoadDataFromServer() {
-        hideLoadingIndicator()
-    }
-    
     func didFailToLoadImage(with message: String) {
         showNetworkError(message: message)
     }
@@ -56,23 +43,22 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     
     // MARK: - Private
     
-    private func showLoadingIndicator() {
+    func showLoadingIndicator() {
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
     }
     
-    private func hideLoadingIndicator() {
+    func hideLoadingIndicator() {
         activityIndicator.isHidden = true
         activityIndicator.stopAnimating()
     }
     
-    private func showNetworkError(message: String) {
+    func showNetworkError(message: String) {
         hideLoadingIndicator()
         let model: AlertModel = AlertModel(title: "Ошибка", message: message, buttonText: "Попробовать еще раз") { [weak self] in
             guard let self = self else { return }
             
-            self.presenter.resetQuestionIndex()
-            self.correctAnswers = 0
+            self.presenter.restartGame()
             self.showLoadingIndicator()
         }
         alertPresenter.show(with: model)
@@ -102,7 +88,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         
         if isCorrect == true {
             imageView.layer.borderColor = UIColor(.ypGreen)?.cgColor
-            correctAnswers += 1
+            presenter.didAnswer(isCorrectAnswer: isCorrect)
         } else {
             imageView.layer.borderColor = UIColor(.ypRed)?.cgColor
         }
@@ -111,7 +97,6 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         imageView.layer.cornerRadius = 20
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
             guard let self = self else { return }
-            self.presenter.correctAnswers = self.correctAnswers
             self.presenter.showNextQuestionOrResults()
         }
     }

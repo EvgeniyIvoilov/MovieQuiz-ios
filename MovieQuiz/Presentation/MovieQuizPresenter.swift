@@ -15,7 +15,7 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
     weak var viewController: MovieQuizViewController?
     var correctAnswers: Int = 0
     private var statisticService: StatisticService?
-    var questionFactory: QuestionFactoryProtocol? = {
+    private var questionFactory: QuestionFactoryProtocol? = {
         let factory =  QuestionFactory(moviesLoader: MoviesLoader(), delegate: nil)
         return factory
     }()
@@ -44,11 +44,13 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
     }
     
     func didLoadDataFromServer() {
+        viewController?.hideLoadingIndicator()
         questionFactory?.requestNextQuestion()
     }
     
     func didFailToLoadData(with error: Error) {
-        
+        let message = error.localizedDescription
+        viewController?.showNetworkError(message: message)
     }
     
     func didFailToLoadImage(with message: String) {
@@ -86,12 +88,18 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
         currentQuestionIndex == questionsAmount - 1
     }
     
-    func resetQuestionIndex() {
+    func restartGame() {
         currentQuestionIndex = 0
+        correctAnswers = 0
+        questionFactory?.requestNextQuestion()
     }
     
     func switchToNextQuestion() {
         currentQuestionIndex += 1
+    }
+    
+    func didAnswer(isCorrectAnswer: Bool) {
+        if (isCorrectAnswer) { correctAnswers += 1}
     }
     
     func convert(model: QuizQuestion) -> QuizStepViewModel {
@@ -110,7 +118,7 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
             let message = makeAlertMessage(resultText)
             let model: AlertModel = AlertModel(title: "Этот раунд окончен", message: message, buttonText: "Сыграть еще раз!", completion: { [weak self] in
                 guard let self = self else { return }
-                self.resetQuestionIndex()
+                self.restartGame()
                 self.correctAnswers = 0
                 self.questionFactory?.requestNextQuestion()
                 self.viewController?.imageView.layer.masksToBounds = true
