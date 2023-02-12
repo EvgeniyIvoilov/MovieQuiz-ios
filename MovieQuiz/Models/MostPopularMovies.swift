@@ -1,10 +1,3 @@
-//
-//  MostPopularMovies.swift
-//  MovieQuiz
-//
-//  Created by Евгений Ивойлов on 19.01.2023.
-//
-
 import Foundation
 
 struct MostPopularMovies: Codable {
