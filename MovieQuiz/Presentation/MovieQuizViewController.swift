@@ -9,10 +9,10 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
     private let alertPresenter: AlertPresenter = AlertPresenter()
     
     @IBOutlet private var questionButtons: [UIButton]!
-    @IBOutlet private var imageView: UIImageView!
-    @IBOutlet private var textLabel: UILabel!
-    @IBOutlet private var counterLabel: UILabel!
-    @IBOutlet private var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet private weak var textLabel: UILabel!
+    @IBOutlet private weak var counterLabel: UILabel!
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
     // MARK: - Livecycle
     
